@@ -32,14 +32,17 @@ move_file(){
  
   # change dir
   cd $srcDir
+
+#  ls -F| grep /
+
  
   # search file 
   # find no ugokini tyuui 
   for fName in `find . -name "$ext"`
   do
-
+     
     # get file name
-    efName=`echo $fName`
+    efName=`echo $fName  | sed -e 's/^..*//'`
     dstFile=$dstDir/$efName
 
     # preDir file check
@@ -50,13 +53,14 @@ move_file(){
  
     echo "copy [$fName] to [$dstDir]"
     # copy file
-    cp -f $fName $dstFile
+    cp -f $fName $dstDir
  
     # after file check
-    if [ ! -f $dstFile ]; then
-      echo "after copy [$dstFile] is not found"
-      exit
-    fi
+#    if [ ! -f $dstFile ]; then
+#      echo "after copy [$dstFile] is not found"
+#      exit
+#    fi
+
   done
 }
  
@@ -68,7 +72,7 @@ echo ""
 # start function
 # move_file srcDir destDir
 
-move_file ~/shdbg ~/shdbg/home
+move_file ~/shdbg ~/shell
  
 echo ""
 echo "###############################################"
