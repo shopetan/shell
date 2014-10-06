@@ -29,9 +29,10 @@ move_file(){
     echo "dst [$dstDir] is not found "
     exit
   fi
+
+      # change dir
+      cd $srcDir
  
-  # change dir
-  cd $srcDir
 
 #  ls -F| grep /
 
@@ -40,30 +41,42 @@ move_file(){
   # find no ugokini tyuui 
   for fName in `find . -name "$ext"`
   do
-     
-    # get file name
-    efName=`echo $fName  | sed -e 's/^..*//'`
-    dstFile=$dstDir/$efName
-
-    # preDir file check
-    if [ -f $dstFile ]; then
-      echo "[$dstFile] is already exist"
-      exit
-    fi
- 
-    echo "copy [$fName] to [$dstDir]"
-    # copy file
-    cp -f $fName $dstDir
- 
-    # after file check
-#    if [ ! -f $dstFile ]; then
-#      echo "after copy [$dstFile] is not found"
-#      exit
-#    fi
-
+      
+      rName=$fName
+      #substring j1xxxx.c
+      rName=`echo ${rName:2:6}`
+      rName=`echo $rName | sed -e "s/$/.c/"`
+      
+      
+      # get file name
+      efName=`echo $fName  | sed -e 's/^..*//'`
+      dstFile=$dstDir/$efName
+      
+      # preDir file check
+      if [ -f $dstFile ]; then
+	  echo "[$dstFile] is already exist"
+	  exit
+      fi
+      
+      echo "copy [$fName] to [$dstDir]"
+      # copy file
+      cp -f $fName $dstDir
+      
+      #reName
+      cd $dstDir
+      prName=`find . -name "$ext"`
+      mv $prName $rName
+      cd $srcDir
+      
+      # after file check
+      #    if [ ! -f $dstFile ]; then
+      #      echo "after copy [$dstFile] is not found"
+      #      exit
+      #    fi
+      
   done
 }
- 
+
 echo "###############################################"
 echo "##                   START                   ##"
 echo "###############################################"
