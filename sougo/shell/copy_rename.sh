@@ -85,7 +85,7 @@ echo ""
 # start function
 # move_file srcDir destDir
 
-cr_file ~/shdbg ~/admin
+cr_file ~/Desktop/shell/sougo/shdbg ~/Desktop/shell/sougo/admin
  
 echo ""
 echo "###############################################"
