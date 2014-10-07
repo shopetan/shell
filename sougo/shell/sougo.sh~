@@ -15,9 +15,9 @@ sougo_file(){
   srcDir=$1
   dstDir=$2
 
-  echo srcDir is [$srcDir]
-  echo dstDir is [$dstDir]
-  
+  echo "srcDir is [$srcDir]" 
+  echo "dstDir is [$dstDir]" 
+  echo  
 
   cd $srcDir
 
@@ -37,27 +37,26 @@ sougo_file(){
   do
       rand=$((RANDOM % $toData))
 
-      hoge=${repData[$rand]}
-      repData[$rand]=${repData[$toData-1]}
-      repData[$toData-1]=$hoge
-
 #このif文が機能していないっぽい 被りなしが実現できていない
-#      if [[ ${repData[$toData-1]} = ${shuData[$toData-1]} ]]
-#      then
-#	  ((i--))
-#	  echo $i
-#      else
-      toData=`expr $toData - 1`
-#      fi
-
+      if [[rand -eq toData-1 -a count-1 -ne 0 ]]
+      then
+	  ((i--))
+	  echo $i
+      else
+	  hoge=${repData[$rand]}
+	  repData[$rand]=${repData[$toData-1]}
+	  repData[$toData-1]=$hoge
+	  toData=`expr $toData - 1`
+      fi
+      
 #      echo rand = $rand
 #      echo toData = $toData
       
       
   done
   
-  echo ${shuData[@]}
-  echo ${repData[@]}
+#  echo ${shuData[@]}
+#  echo ${repData[@]}
   
 
 
@@ -65,7 +64,6 @@ sougo_file(){
   for i in `seq 1 $toData`
   do
       fName=`find . -name "${repData[$i-1]}"`
-      echo $fName
       cp -f $fName $dstDir
       
       
@@ -75,19 +73,20 @@ sougo_file(){
   do
       cd $srcDir
       fName=`find . -name "${shuData[$i-1]}"`
+      rName=`find . -name "${repData[$i-1]}"`
+
       fName=`echo ${fName:2:6}`
       fName=`echo $fName | sed -e "s/$/.c/"`
 
       cd $dstDir
-      rName=`find . -name "${repData[$i-1]}"`
       rName=`echo ${rName:2:6}`
-      rName=`echo $rName | sed -e "s/$/.c/"`
       rName=`echo $rName | sed -e "s/^/s1/"`
+      rName=`echo $rName | sed -e "s/$/.c/"`
 
 #      echo ${shuData[$i-1]}
-      echo fName is $fName
-      echo rName is $rName
-      echo
+
+      echo "$fName to $rName " 
+      echo "" >> sougo_output1
 
       mv $fName $rName
      
@@ -95,20 +94,20 @@ sougo_file(){
   
 }
  
-echo "###############################################"
-echo "##                   START                   ##"
-echo "###############################################"
-echo ""
+echo "###############################################" 
+echo "##                   START                   ##" 
+echo "###############################################" 
+echo "" 
  
 # start function
 # sougo srcDir destDir
 
-sougo_file ~/admin ~/shdbg/home/class/j2/prog/j13/j2pro1007/sougo1
+sougo_file ~/Desktop/shell/sougo/admin ~/Desktop/shell/sougo/shdbg/home/class/j2/prog/j13/j2pro1007/sougo1
 
  
-echo ""
-echo "###############################################"
-echo "##                    END                    ##"
-echo "###############################################"
+echo "" 
+echo "###############################################" 
+echo "##                    END                    ##" 
+echo "###############################################" 
  
 exit
