@@ -1,0 +1,33 @@
+###############################################
+##                   START                   ##
+###############################################
+
+srcfile to [/home/owner/shell-master/sougo/shdbg/home/class/j2/prog/j13/j2pro1007/sougo1]
+j13401.c to s1j13403.c 
+j13402.c to s1j13404.c 
+j13403.c to s1j13402.c 
+j13404.c to s1j13405.c 
+j13405.c to s1j13401.c 
+
+srcfile to [/home/owner/shell-master/sougo/shdbg/home/class/j2/prog/j13/j2pro1007/sougo2]
+j13401.c to s2j13405.c 
+j13402.c to s2j13403.c 
+j13403.c to s2j13401.c 
+j13404.c to s2j13402.c 
+j13405.c to s2j13404.c 
+
+srcfile to [/home/owner/shell-master/sougo/shdbg/home/class/j2/prog/j13/j2pro1007/sougo3]
+j13401.c to s3j13404.c 
+j13402.c to s3j13401.c 
+j13403.c to s3j13405.c 
+j13404.c to s3j13403.c 
+j13405.c to s3j13402.c 
+
+dbg REPORT j13401.c j13402.c j13403.c j13404.c j13405.c
+dbg SOUGO1 j13403.c j13404.c j13402.c j13405.c j13401.c
+dbg SOUGO2 j13405.c j13403.c j13401.c j13402.c j13404.c
+dbg SOUGO2 j13404.c j13401.c j13405.c j13403.c j13402.c
+
+###############################################
+##                    END                    ##
+###############################################

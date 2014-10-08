@@ -1,0 +1,13 @@
+###############################################
+##                   START                   ##
+###############################################
+
+srcDir is [/home/owner/shell-master/sougo/shdbg]
+dstDir is [/home/owner/shell-master/sougo/admin]
+copy [./j13401/No1007_2.c] to [/home/owner/shell-master/sougo/admin]
+copy [./j13402/No1007_2.c] to [/home/owner/shell-master/sougo/admin]
+copy [./j13403/No1007_2.c] to [/home/owner/shell-master/sougo/admin]
+
+###############################################
+##                    END                    ##
+###############################################
